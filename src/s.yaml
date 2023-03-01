@@ -25,6 +25,7 @@ services:
         description: "stable-diffusion-webui(超火的AI绘画)"
         logConfig: auto
         role: "{{ roleArn }}"
+        {{if !!bucketName}}
         ossMountConfig:
           mountPoints:
             - bucketName: "{{ bucketName }}"
@@ -37,6 +38,7 @@ services:
               bucketPath: ''
               mountDir: /output
               readOnly: false
+        {{/if}}
       function:
         name: "{{ functionName }}"
         description: "This is an API that detects the GPU instance environment"
